@@ -1,7 +1,7 @@
 import { Column, Repository } from 'typeorm';
 import { SignUpDto } from '@modules/auth/dto/sign-up.dto';
 import { IsNumber, IsString } from 'class-validator';
-import { UserEntity } from '@modules/user/entities/user.entity';
+import { ProfileEntity } from '@/entities/profile.entity';
 
 class UserService {
     constructor() {}

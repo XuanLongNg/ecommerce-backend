@@ -11,7 +11,7 @@ export class SignUpDto {
     name: string;
 
     @IsNumber()
-    date_of_birth: number;
+    date_of_birth: string;
 
     @IsString()
     avatar: string;

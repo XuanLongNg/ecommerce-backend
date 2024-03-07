@@ -4,6 +4,7 @@ import { BaseException } from '@/common/exceptions/base.exception';
 
 class AuthController {
     public async signUp(req: Request, res: Response) {
+        console.log(req.body);
         try {
             const signUpDto = req.body;
             const { data } = await authService.signUp(signUpDto);
