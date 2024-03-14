@@ -18,11 +18,15 @@ class ProductCategoryEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => CategoryEntity, (category) => category.productCategories)
+    @ManyToOne(() => CategoryEntity, (category) => category.productCategories, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'category_id' })
     category: CategoryEntity;
 
-    @ManyToOne(() => ProductEntity, (product) => product.productCategories)
+    @ManyToOne(() => ProductEntity, (product) => product.productCategories, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'product_id' })
     product: ProductEntity;
 }

@@ -34,12 +34,12 @@ class DatabaseService {
 
     constructor() {
         this.dataSource = new DataSource({
-            type: appConfig.db_type,
-            host: appConfig.db_host,
-            port: appConfig.db_port,
-            username: appConfig.db_username,
-            password: appConfig.db_password,
-            database: appConfig.db_database,
+            type: appConfig.dbType,
+            host: appConfig.dbHost,
+            port: appConfig.dbPort,
+            username: appConfig.dbUsername,
+            password: appConfig.dbPassword,
+            database: appConfig.dbDatabase,
             entities: [
                 AccountEntity,
                 ProfileEntity,
@@ -57,7 +57,7 @@ class DatabaseService {
                 RoleEntity,
             ],
             logging: true,
-            synchronize: true,
+            synchronize: false,
             charset: 'utf8mb4',
         });
         this.dataSource

@@ -1,4 +1,11 @@
-import { IsEmail, IsNumber, IsString, IsStrongPassword } from 'class-validator';
+import {
+    IsEmail,
+    IsEnum,
+    IsNumber,
+    IsString,
+    IsStrongPassword,
+} from 'class-validator';
+import { EGender } from '@modules/user/enums/profile.enum';
 
 export class SignUpDto {
     @IsEmail()
@@ -15,4 +22,16 @@ export class SignUpDto {
 
     @IsString()
     avatar: string;
+
+    @IsEnum(EGender)
+    gender: EGender;
+
+    @IsString()
+    countryId: string;
+
+    @IsString()
+    cityId: string;
+
+    @IsString()
+    details: string;
 }

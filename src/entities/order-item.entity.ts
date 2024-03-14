@@ -16,11 +16,15 @@ class OrderItemEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => CartEntity, (cart) => cart.orderItem)
+    @OneToOne(() => CartEntity, (cart) => cart.orderItem, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'cart_id' })
     cart: CartEntity;
 
-    @ManyToOne(() => OrderEntity, (order) => order.orderItems)
+    @ManyToOne(() => OrderEntity, (order) => order.orderItems, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'order_id' })
     order: OrderEntity;
 }

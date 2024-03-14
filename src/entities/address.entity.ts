@@ -19,19 +19,24 @@ class AddressEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => CountryEntity, (country) => country.addresses)
+    @ManyToOne(() => CountryEntity, (country) => country.addresses, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'country_id' })
-    countries: CountryEntity;
+    country: CountryEntity;
 
-    @ManyToOne(() => CityEntity, (city) => city.addresses)
+    @ManyToOne(() => CityEntity, (city) => city.addresses, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'city_id' })
-    cities: CityEntity;
+    city: CityEntity;
 
     @Column({
         type: 'varchar',
         length: 255,
+        nullable: true,
     })
-    details: string;
+    details?: string;
 
     @OneToOne(() => OrderEntity, (order) => order.address)
     order: OrderEntity;

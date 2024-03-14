@@ -16,6 +16,7 @@ class CountryEntity extends BaseEntity {
     @Column({
         type: 'varchar',
         length: 255,
+        nullable: false,
     })
     name: string;
 
@@ -23,9 +24,9 @@ class CountryEntity extends BaseEntity {
         type: String,
         nullable: true,
     })
-    flag: string;
+    flag?: string;
 
-    @OneToMany(() => AddressEntity, (address) => address.countries)
+    @OneToMany(() => AddressEntity, (address) => address.city)
     addresses: AddressEntity[];
 }
 

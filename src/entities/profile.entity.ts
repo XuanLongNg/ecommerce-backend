@@ -21,6 +21,7 @@ class ProfileEntity extends BaseEntity {
     @Column({
         type: 'varchar',
         length: 255,
+        nullable: false,
     })
     name: string;
 
@@ -37,18 +38,23 @@ class ProfileEntity extends BaseEntity {
         nullable: true,
         default: EGender.OTHER,
     })
-    gender: EGender;
+    gender?: EGender;
 
     @Column({
         type: String,
+        nullable: true,
     })
-    avatar: string;
+    avatar?: string;
 
-    @OneToOne(() => AddressEntity, (address) => address.id)
+    @OneToOne(() => AddressEntity, (address) => address.id, {
+        nullable: true,
+    })
     @JoinColumn({ name: 'address_id' })
-    address: AddressEntity;
+    address?: AddressEntity;
 
-    @OneToOne(() => AccountEntity, (account) => account.profile)
+    @OneToOne(() => AccountEntity, (account) => account.profile, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'account_id' })
     account: AccountEntity;
 }

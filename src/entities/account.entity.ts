@@ -38,11 +38,13 @@ class AccountEntity {
     @Column({
         type: 'boolean',
         name: 'is_active',
+        default: true,
     })
     isActive: boolean;
 
-    @ManyToOne(() => RoleEntity, (role) => role.accounts)
-    @JoinColumn()
+    @ManyToOne(() => RoleEntity, (role) => role.accounts, {
+        nullable: false,
+    })
     role: RoleEntity;
 
     @OneToOne(() => ProfileEntity, (profile) => profile.account)

@@ -14,18 +14,21 @@ class ProductEntity extends BaseEntity {
     @Column({
         type: 'varchar',
         length: 255,
+        nullable: false,
     })
     name: string;
 
     @Column({
         type: Number,
+        nullable: false,
     })
     price: number;
 
     @Column({
         type: String,
+        nullable: true,
     })
-    description: string;
+    description?: string;
 
     @OneToMany(
         () => ProductCategoryEntity,

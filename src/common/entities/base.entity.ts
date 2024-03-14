@@ -11,12 +11,14 @@ export class BaseEntity {
         type: 'varchar',
         length: 50,
         name: 'created_at',
+        default: new Date().getTime().toString(),
     })
     createdAt: string;
 
     @Column({
         type: 'uuid',
         name: 'updated_by',
+        nullable: true,
     })
     updatedBy: string;
 
@@ -24,12 +26,15 @@ export class BaseEntity {
         type: 'varchar',
         length: 50,
         name: 'updated_at',
+        nullable: true,
+        default: new Date().getTime().toString(),
     })
     updatedAt: string;
 
     @Column({
         type: 'uuid',
         name: 'deleted_by',
+        nullable: true,
     })
     deletedBy: string;
 
@@ -37,6 +42,7 @@ export class BaseEntity {
         type: 'varchar',
         length: 50,
         name: 'deleted_at',
+        nullable: true,
     })
     deletedAt: string;
 }

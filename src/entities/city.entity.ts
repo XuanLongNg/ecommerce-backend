@@ -9,17 +9,18 @@ import { AddressEntity } from '@/entities/address.entity';
 class CityEntity extends BaseEntity {
     @PrimaryColumn({
         type: 'varchar',
-        length: 2,
+        length: 5,
     })
     id: string;
 
     @Column({
         type: 'varchar',
         length: 255,
+        nullable: false,
     })
     name: string;
 
-    @OneToMany(() => AddressEntity, (address) => address.cities)
+    @OneToMany(() => AddressEntity, (address) => address.city)
     addresses: AddressEntity[];
 }
 

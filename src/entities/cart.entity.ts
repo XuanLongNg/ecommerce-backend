@@ -22,17 +22,23 @@ class CartEntity extends BaseEntity {
     @Column({
         type: Number,
         default: 0,
+        nullable: false,
     })
     quantity: number;
 
     @ManyToOne(
         () => ProductVariantEntity,
-        (productVariant) => productVariant.carts
+        (productVariant) => productVariant.carts,
+        {
+            nullable: false,
+        }
     )
     @JoinColumn({ name: 'product_variant_id' })
     productVariant: ProductVariantEntity;
 
-    @ManyToOne(() => AccountEntity, (account) => account.carts)
+    @ManyToOne(() => AccountEntity, (account) => account.carts, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'account_id' })
     account: AccountEntity;
 

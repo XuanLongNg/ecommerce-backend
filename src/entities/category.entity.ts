@@ -13,6 +13,7 @@ class CategoryEntity extends BaseEntity {
     @Column({
         type: 'varchar',
         length: 255,
+        nullable: false,
     })
     name: string;
 

@@ -23,23 +23,25 @@ class ProductVariantEntity extends BaseEntity {
         length: 255,
         nullable: true,
     })
-    color: string;
+    color?: string;
 
     @Column({
         type: 'varchar',
         length: 255,
         nullable: true,
     })
-    size: string;
+    size?: string;
 
     @Column({
         type: String,
+        nullable: false,
     })
     image: string;
 
     @Column({
         type: Number,
         default: 0,
+        nullable: false,
     })
     quantity: number;
 
@@ -49,7 +51,9 @@ class ProductVariantEntity extends BaseEntity {
     })
     sold: number;
 
-    @ManyToOne(() => ProductEntity, (product) => product.productVariants)
+    @ManyToOne(() => ProductEntity, (product) => product.productVariants, {
+        nullable: false,
+    })
     @JoinColumn({ name: 'product_id' })
     product: ProductEntity;
 
