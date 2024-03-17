@@ -207,16 +207,16 @@ class AuthService {
 
     async handleRefreshToken(request: RefreshTokenDto) {
         try {
-            const { refreshToken } = request;
+            const { privateKey } = request;
 
             const decodeData: JwtPayload = jwtService.verify(
-                refreshToken,
+                privateKey,
                 appConfig.jwtPrivateKey
             ) as JwtPayload;
 
             delete decodeData.exp;
 
-            const accessToken = jwtService.sign(
+            const publicKey = jwtService.sign(
                 decodeData.data,
                 appConfig.jwtPublicExp,
                 appConfig.jwtPublicKey
@@ -225,8 +225,8 @@ class AuthService {
                 data: { ...decodeData.data },
                 meta: {
                     payload: {
-                        accessToken,
-                        refreshToken,
+                        publicKey,
+                        privateKey,
                     },
                 },
             };
