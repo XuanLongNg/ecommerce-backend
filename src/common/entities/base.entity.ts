@@ -20,7 +20,7 @@ export class BaseEntity {
         name: 'updated_by',
         nullable: true,
     })
-    updatedBy: string;
+    updatedBy?: string | null;
 
     @Column({
         type: 'varchar',
@@ -29,14 +29,14 @@ export class BaseEntity {
         nullable: true,
         default: new Date().getTime().toString(),
     })
-    updatedAt: string;
+    updatedAt?: string | null;
 
     @Column({
         type: 'uuid',
         name: 'deleted_by',
         nullable: true,
     })
-    deletedBy: string;
+    deletedBy?: string | null;
 
     @Column({
         type: 'varchar',
@@ -44,5 +44,5 @@ export class BaseEntity {
         name: 'deleted_at',
         nullable: true,
     })
-    deletedAt: string;
+    deletedAt?: string | null;
 }

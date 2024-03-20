@@ -112,7 +112,7 @@ class ProductService {
 
     async delete(productId: string, userId: string) {
         const timeUpdate = new Date().getTime().toString();
-        const isExist = database.productRepository.existsBy({
+        const isExist = await database.productRepository.existsBy({
             id: productId,
             deletedBy: IsNull(),
         });

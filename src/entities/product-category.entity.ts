@@ -15,14 +15,17 @@ import { ProductEntity } from '@/entities/product.entity';
     schema: 'productCategory',
 })
 class ProductCategoryEntity extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
+    @PrimaryColumn({ name: 'category_id' })
+    categoryId: number;
 
     @ManyToOne(() => CategoryEntity, (category) => category.productCategories, {
         nullable: false,
     })
     @JoinColumn({ name: 'category_id' })
     category: CategoryEntity;
+
+    @PrimaryColumn({ name: 'product_id' })
+    productId: string;
 
     @ManyToOne(() => ProductEntity, (product) => product.productCategories, {
         nullable: false,

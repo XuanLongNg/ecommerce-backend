@@ -49,7 +49,7 @@ class CategoryService {
         };
     }
 
-    async retrieve(id: string) {
+    async retrieve(id: number) {
         const data = await database.categoryRepository.findOne({
             where: {
                 id,
@@ -84,7 +84,7 @@ class CategoryService {
     }
 
     async update(
-        categoryId: string,
+        categoryId: number,
         userId: string,
         request: UpdateCategoryDto
     ) {
@@ -108,9 +108,9 @@ class CategoryService {
         };
     }
 
-    async delete(categoryId: string, userId: string) {
+    async delete(categoryId: number, userId: string) {
         const timeUpdate = new Date().getTime().toString();
-        const isExist = database.categoryRepository.existsBy({
+        const isExist = await database.categoryRepository.existsBy({
             id: categoryId,
             deletedBy: IsNull(),
         });
