@@ -8,7 +8,7 @@ import { ProductCategoryEntity } from '@/entities/product-category.entity';
 })
 class CategoryEntity extends BaseEntity {
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column({
         type: 'varchar',

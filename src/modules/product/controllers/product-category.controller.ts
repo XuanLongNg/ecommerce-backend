@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { BaseException } from '@/common/exceptions/base.exception';
-import { categoryService } from '@modules/category/services/category.service';
+import { productCategoryService } from '@modules/product/services/product-category.service';
 
-class CategoryController {
+class ProductCategoryController {
     async getAll(req: Request, res: Response) {
         try {
             const query = req.query;
-            const data = await categoryService.getAll(query);
+            const data = await productCategoryService.getAll(query);
             return res.status(200).send(data);
         } catch (error) {
             if (error instanceof BaseException) {
@@ -21,10 +21,10 @@ class CategoryController {
         }
     }
 
-    async retrieve(req: Request, res: Response) {
+    async getByProductId(req: Request, res: Response) {
         try {
-            const { id } = req.params;
-            const data = await categoryService.retrieve(parseInt(id));
+            const productId = req.params['productId'] as string;
+            const data = await productCategoryService.getByProductId(productId);
             return res.status(200).send(data);
         } catch (error) {
             if (error instanceof BaseException) {
@@ -41,32 +41,11 @@ class CategoryController {
 
     async create(req: Request, res: Response) {
         try {
-            const createCategory = req.body;
+            const createProductCategory = req.body;
             const userId: string = req.headers['x-user-id'] as string;
-            const data = await categoryService.create(userId, createCategory);
-            return res.status(200).send(data);
-        } catch (error) {
-            if (error instanceof BaseException) {
-                console.log(error);
-                return res.status(error.code).json(error);
-            } else {
-                console.log(error);
-                return res.status(500).json({
-                    message: 'Internal Server Error',
-                });
-            }
-        }
-    }
-
-    async update(req: Request, res: Response) {
-        try {
-            const updateCategory = req.body;
-            const userId: string = req.headers['x-user-id'] as string;
-            const { id: categoryId } = req.params;
-            const data = await categoryService.update(
-                parseInt(categoryId),
+            const data = await productCategoryService.create(
                 userId,
-                updateCategory
+                createProductCategory
             );
             return res.status(200).send(data);
         } catch (error) {
@@ -85,8 +64,10 @@ class CategoryController {
     async delete(req: Request, res: Response) {
         try {
             const userId: string = req.headers['x-user-id'] as string;
-            const { id: categoryId } = req.params;
-            const data = await categoryService.delete(
+            const productId = req.query['productId'] as string;
+            const categoryId = req.query['categoryId'] as string;
+            const data = await productCategoryService.delete(
+                productId,
                 parseInt(categoryId),
                 userId
             );
@@ -105,6 +86,6 @@ class CategoryController {
     }
 }
 
-const categoryController = new CategoryController();
+const productCategoryController = new ProductCategoryController();
 
-export { categoryController, CategoryController };
+export { productCategoryController, ProductCategoryController };
